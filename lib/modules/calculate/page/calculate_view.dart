@@ -5,22 +5,7 @@ class _CalculateView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final selectedTab = context.select(
-      (DashboardCubit cubit) => cubit.state.tab,
-    );
-
     return Scaffold(
-      // appBar: AppBar(
-      //   leading: IconButton(
-      //     onPressed: () {
-      //       context.read<DashboardCubit>().setTab(HomeTab.home);
-      //       context.pop();
-      //     },
-      //     icon: const Icon(Icons.arrow_back_ios_new),
-      //   ),
-      //   title: const Text("Shipment history"),
-      //   flexibleSpace: Text("Ghsgshs"),
-      // ),
       body: Column(
         children: [
           CustomAppBar(
@@ -42,7 +27,7 @@ class _CalculateView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Shipment history",
+                        "Calculate",
                         style: TextStyle(
                           fontSize: 15.5,
                           color: Colors.white,
@@ -55,19 +40,6 @@ class _CalculateView extends StatelessWidget {
                 )
               ],
             ),
-          ),
-          Column(
-            children: [
-              TextButton(
-                onPressed: () =>
-                    context.read<DashboardCubit>().setTab(HomeTab.home),
-                child: const Text(
-                  "Bo Back",
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
-              const Text("Calculate page")
-            ],
           ),
         ],
       ),

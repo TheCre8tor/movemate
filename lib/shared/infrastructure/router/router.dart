@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movemate/modules/calculate/page/calculate.dart';
-import 'package:movemate/modules/dashboard/screens/dashboard.dart';
+import 'package:movemate/modules/dashboard/page/dashboard.dart';
 import 'package:movemate/modules/home/screens/home.dart';
+import 'package:movemate/modules/shipment/page/shipment.dart';
 
 class AppRouter {
   const AppRouter._();
@@ -23,6 +24,11 @@ class AppRouter {
         path: Calculate.path,
         name: Calculate.name,
         pageBuilder: Calculate.route,
+      ),
+      GoRoute(
+        path: Shipment.path,
+        name: Shipment.name,
+        pageBuilder: Shipment.route,
       ),
     ],
     errorPageBuilder: (_errorRoute),
