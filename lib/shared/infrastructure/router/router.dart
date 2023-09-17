@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:movemate/modules/dashboard/screens/dashboard.dart';
 import 'package:movemate/modules/home/screens/home.dart';
 
 class AppRouter {
@@ -9,16 +10,14 @@ class AppRouter {
     debugLogDiagnostics: true,
     routes: [
       GoRoute(
-        path: Home.name,
-        redirect: (context, state) {
-          return Home.path;
-        },
+        path: "/",
+        builder: (context, state) => const Dashboard(),
       ),
-      // GoRoute(
-      //   name: HomePage.name,
-      //   path: HomePage.path,
-      //   pageBuilder: HomePage.route,
-      // ),
+      GoRoute(
+        path: Home.path,
+        name: Home.name,
+        pageBuilder: Home.route,
+      ),
     ],
     errorPageBuilder: (_errorRoute),
   );
