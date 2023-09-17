@@ -10,81 +10,93 @@ class _Dashboard extends StatelessWidget {
     );
 
     return Scaffold(
-      body: IndexedStack(
-        index: selectedTab.index,
-        children: const [
-          Home(),
-          Calculate(),
-          Placeholder(),
-          Placeholder(),
-        ],
-      ),
-      bottomNavigationBar: selectedTab != HomeTab.home
-          ? const SizedBox.shrink()
-          : BottomAppBar(
-              child: Container(
-                padding: const EdgeInsets.only(
-                  top: 17.5,
-                  right: 30.5,
-                  left: 30.5,
-                ),
-                height: 80,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    _HomeButton(
-                      selectedTab: selectedTab,
-                      tab: HomeTab.home,
-                      icon: selectedTab == HomeTab.home
-                          ? AppIcons.home(isFilled: true)
-                          : AppIcons.home(),
-                    ),
-                    _HomeButton(
-                      selectedTab: selectedTab,
-                      tab: HomeTab.calculate,
-                      icon: selectedTab == HomeTab.calculate
-                          ? AppIcons.home(isFilled: true)
-                          : AppIcons.home(),
-                    ),
-                    _HomeButton(
-                      selectedTab: selectedTab,
-                      tab: HomeTab.shipment,
-                      icon: selectedTab == HomeTab.shipment
-                          ? AppIcons.home(isFilled: true)
-                          : AppIcons.home(),
-                    ),
-                    _HomeButton(
-                      selectedTab: selectedTab,
-                      tab: HomeTab.profile,
-                      icon: selectedTab == HomeTab.profile
-                          ? AppIcons.home(isFilled: true)
-                          : AppIcons.home(),
-                    ),
-                  ],
-                ),
+      body: const Home(),
+      bottomNavigationBar: BottomAppBar(
+        child: Container(
+          padding: const EdgeInsets.only(
+            top: 17.5,
+            right: 30.5,
+            left: 30.5,
+          ),
+          height: 80,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              HomeButton(
+                selectedTab: selectedTab,
+                tab: HomeTab.home,
+                pageName: Home.name,
+                currentIndex: 0,
+                icon: selectedTab == HomeTab.home
+                    ? AppIcons.home(isFilled: true)
+                    : AppIcons.home(),
               ),
-            ),
+              HomeButton(
+                selectedTab: selectedTab,
+                tab: HomeTab.calculate,
+                pageName: Calculate.name,
+                currentIndex: 1,
+                icon: selectedTab == HomeTab.calculate
+                    ? AppIcons.home(isFilled: true)
+                    : AppIcons.home(),
+              ),
+              HomeButton(
+                selectedTab: selectedTab,
+                tab: HomeTab.shipment,
+                pageName: "/",
+                currentIndex: 2,
+                icon: selectedTab == HomeTab.shipment
+                    ? AppIcons.home(isFilled: true)
+                    : AppIcons.home(),
+              ),
+              HomeButton(
+                selectedTab: selectedTab,
+                tab: HomeTab.profile,
+                pageName: "/",
+                currentIndex: 3,
+                icon: selectedTab == HomeTab.profile
+                    ? AppIcons.home(isFilled: true)
+                    : AppIcons.home(),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
 
-class _HomeButton extends StatelessWidget {
-  const _HomeButton({
+class HomeButton extends StatelessWidget {
+  const HomeButton({
     Key? key,
     required this.selectedTab,
     required this.tab,
     required this.icon,
+    required this.pageName,
+    required this.currentIndex,
   }) : super(key: key);
 
   final HomeTab selectedTab;
   final HomeTab tab;
   final SvgPicture icon;
+  final String pageName;
+  final int currentIndex;
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
         context.read<DashboardCubit>().setTab(tab);
+
+        if (tab == HomeTab.home && context.canPop()) {
+          context.pop();
+        }
+
+        if (tab == HomeTab.home ||
+            selectedTab == HomeTab.dashboard ||
+            tab == selectedTab) return;
+
+        context.pushNamed(pageName, extra: context.read<DashboardCubit>());
       },
       child: Column(
         children: [
@@ -95,28 +107,6 @@ class _HomeButton extends StatelessWidget {
             style: const TextStyle(
               fontSize: 11,
               color: Color(0xFF461257),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class Calculate extends StatelessWidget {
-  const Calculate({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        children: [
-          TextButton(
-            onPressed: () =>
-                context.read<DashboardCubit>().setTab(HomeTab.home),
-            child: Text(
-              "Bo Back",
-              style: TextStyle(color: Colors.black),
             ),
           ),
         ],

@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AppIcons {
@@ -15,6 +14,22 @@ class AppIcons {
     return SvgPicture.asset(
       "$_base/home.svg",
       theme: SvgTheme(currentColor: isFilled ? _active : _inactive),
+    );
+  }
+
+  static SvgPicture get locator {
+    return SvgPicture.asset(
+      "$_base/locator.svg",
+      theme: const SvgTheme(currentColor: Color(0xFFBEBEBE)),
+    );
+  }
+
+  static SvgPicture get alarm => SvgPicture.asset("$_base/alarm.svg");
+
+  static SvgPicture get scanner {
+    return SvgPicture.asset(
+      "$_base/scanner.svg",
+      theme: const SvgTheme(currentColor: Colors.white),
     );
   }
 }

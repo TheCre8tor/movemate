@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:movemate/modules/calculate/page/calculate.dart';
+import 'package:movemate/shared/core/constants/app_icons.dart';
+import 'package:movemate/shared/core/constants/app_png.dart';
 
 part 'home_view.dart';
 

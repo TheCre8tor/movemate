@@ -1,6 +1,6 @@
 part of 'dashboard_cubit.dart';
 
-enum HomeTab { home, calculate, shipment, profile }
+enum HomeTab { home, calculate, shipment, profile, dashboard }
 
 class DashboardState extends Equatable {
   const DashboardState({this.tab = HomeTab.home});
