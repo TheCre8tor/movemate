@@ -61,7 +61,7 @@ class _CalculateView extends StatelessWidget {
               TextButton(
                 onPressed: () =>
                     context.read<DashboardCubit>().setTab(HomeTab.home),
-                child: Text(
+                child: const Text(
                   "Bo Back",
                   style: TextStyle(color: Colors.black),
                 ),
@@ -71,57 +71,7 @@ class _CalculateView extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: BottomAppBar(
-        child: Container(
-          padding: const EdgeInsets.only(
-            top: 17.5,
-            right: 30.5,
-            left: 30.5,
-          ),
-          height: 80,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              HomeButton(
-                selectedTab: selectedTab,
-                tab: HomeTab.home,
-                pageName: Home.name,
-                currentIndex: 0,
-                icon: selectedTab == HomeTab.home
-                    ? AppIcons.home(isFilled: true)
-                    : AppIcons.home(),
-              ),
-              HomeButton(
-                selectedTab: selectedTab,
-                tab: HomeTab.calculate,
-                pageName: Calculate.name,
-                currentIndex: 1,
-                icon: selectedTab == HomeTab.calculate
-                    ? AppIcons.home(isFilled: true)
-                    : AppIcons.home(),
-              ),
-              HomeButton(
-                selectedTab: selectedTab,
-                tab: HomeTab.shipment,
-                pageName: "/",
-                currentIndex: 2,
-                icon: selectedTab == HomeTab.shipment
-                    ? AppIcons.home(isFilled: true)
-                    : AppIcons.home(),
-              ),
-              HomeButton(
-                selectedTab: selectedTab,
-                tab: HomeTab.profile,
-                pageName: "/",
-                currentIndex: 3,
-                icon: selectedTab == HomeTab.profile
-                    ? AppIcons.home(isFilled: true)
-                    : AppIcons.home(),
-              ),
-            ],
-          ),
-        ),
-      ),
+      bottomSheet: const AppBottomBar(),
     );
   }
 }
@@ -135,7 +85,7 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: const Color(0xFF6C34A4),
-      child: SafeArea(child: child),
+      child: SafeArea(bottom: false, child: child),
     );
   }
 }

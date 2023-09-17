@@ -13,11 +13,17 @@ class _HomeView extends StatelessWidget {
       body: Column(
         children: [
           CustomAppBar(
-            child: Padding(
-              padding: const EdgeInsets.only(right: 16, bottom: 16, left: 16),
+            child: Container(
+              // height: 100,
+              padding: const EdgeInsets.only(
+                right: 16,
+                bottom: 16,
+                left: 16,
+              ),
               child: Column(
                 children: [
-                  SizedBox(
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 20),
                     width: MediaQuery.sizeOf(context).width,
                     child: Column(
                       children: [
@@ -86,7 +92,6 @@ class _HomeView extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 20),
                   TextFormField(
                     decoration: InputDecoration(
                       hintText: "Enter the receipt number...",
@@ -129,6 +134,7 @@ class _HomeView extends StatelessWidget {
               ),
             ),
           ),
+          Text("Content..."),
         ],
       ),
     );

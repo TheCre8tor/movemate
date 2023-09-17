@@ -5,61 +5,71 @@ class _Dashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Home(),
+      bottomSheet: AppBottomBar(),
+    );
+  }
+}
+
+class AppBottomBar extends StatelessWidget {
+  const AppBottomBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     final selectedTab = context.select(
       (DashboardCubit cubit) => cubit.state.tab,
     );
 
-    return Scaffold(
-      body: const Home(),
-      bottomNavigationBar: BottomAppBar(
-        child: Container(
-          padding: const EdgeInsets.only(
-            top: 17.5,
-            right: 30.5,
-            left: 30.5,
-          ),
-          height: 80,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              HomeButton(
-                selectedTab: selectedTab,
-                tab: HomeTab.home,
-                pageName: Home.name,
-                currentIndex: 0,
-                icon: selectedTab == HomeTab.home
-                    ? AppIcons.home(isFilled: true)
-                    : AppIcons.home(),
-              ),
-              HomeButton(
-                selectedTab: selectedTab,
-                tab: HomeTab.calculate,
-                pageName: Calculate.name,
-                currentIndex: 1,
-                icon: selectedTab == HomeTab.calculate
-                    ? AppIcons.home(isFilled: true)
-                    : AppIcons.home(),
-              ),
-              HomeButton(
-                selectedTab: selectedTab,
-                tab: HomeTab.shipment,
-                pageName: "/",
-                currentIndex: 2,
-                icon: selectedTab == HomeTab.shipment
-                    ? AppIcons.home(isFilled: true)
-                    : AppIcons.home(),
-              ),
-              HomeButton(
-                selectedTab: selectedTab,
-                tab: HomeTab.profile,
-                pageName: "/",
-                currentIndex: 3,
-                icon: selectedTab == HomeTab.profile
-                    ? AppIcons.home(isFilled: true)
-                    : AppIcons.home(),
-              ),
-            ],
-          ),
+    return BottomAppBar(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: Container(
+        padding: const EdgeInsets.only(
+          top: 17.5,
+          right: 30.5,
+          left: 30.5,
+        ),
+        height: 80,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            HomeButton(
+              selectedTab: selectedTab,
+              tab: HomeTab.home,
+              pageName: Home.name,
+              currentIndex: 0,
+              icon: selectedTab == HomeTab.home
+                  ? AppIcons.home(isFilled: true)
+                  : AppIcons.home(),
+            ),
+            HomeButton(
+              selectedTab: selectedTab,
+              tab: HomeTab.calculate,
+              pageName: Calculate.name,
+              currentIndex: 1,
+              icon: selectedTab == HomeTab.calculate
+                  ? AppIcons.calculator(isFilled: true)
+                  : AppIcons.calculator(),
+            ),
+            HomeButton(
+              selectedTab: selectedTab,
+              tab: HomeTab.shipment,
+              pageName: "/",
+              currentIndex: 2,
+              icon: selectedTab == HomeTab.shipment
+                  ? AppIcons.timer(isFilled: true)
+                  : AppIcons.timer(),
+            ),
+            HomeButton(
+              selectedTab: selectedTab,
+              tab: HomeTab.profile,
+              pageName: "/",
+              currentIndex: 3,
+              icon: selectedTab == HomeTab.profile
+                  ? AppIcons.profile(isFilled: true)
+                  : AppIcons.profile(),
+            ),
+          ],
         ),
       ),
     );
@@ -100,13 +110,20 @@ class HomeButton extends StatelessWidget {
       },
       child: Column(
         children: [
-          icon,
-          const SizedBox(height: 4),
+          Container(
+            child: icon,
+            height: 19,
+          ),
+          const SizedBox(height: 6),
           Text(
             tab.name.replaceFirst(tab.name[0], tab.name[0].toUpperCase()),
-            style: const TextStyle(
-              fontSize: 11,
-              color: Color(0xFF461257),
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight:
+                  tab == selectedTab ? FontWeight.w600 : FontWeight.w500,
+              color: tab == selectedTab
+                  ? const Color(0xFF6C34A4)
+                  : const Color(0xFF959499),
             ),
           ),
         ],
