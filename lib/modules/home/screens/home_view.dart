@@ -6,10 +6,6 @@ class _HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text("Home Screen"),
-      // ),
-      // bottomSheet: AppBottomSheet(),
       body: Column(
         children: [
           CustomAppBar(
@@ -134,18 +130,9 @@ class _HomeView extends StatelessWidget {
               ),
             ),
           ),
-          Text("Content..."),
         ],
       ),
+      bottomSheet: const AppBottomBar(),
     );
-  }
-}
-
-class AppBottomSheet extends StatelessWidget {
-  const AppBottomSheet({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Text("Bottom Bar");
   }
 }

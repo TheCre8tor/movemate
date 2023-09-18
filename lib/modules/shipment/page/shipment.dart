@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movemate/modules/calculate/page/calculate.dart';
 import 'package:movemate/modules/dashboard/cubit/dashboard_cubit.dart';
+import 'package:movemate/modules/dashboard/page/dashboard.dart';
+import 'package:movemate/modules/home/screens/home.dart';
 
 part 'shipment_view.dart';
 
@@ -14,9 +17,11 @@ class Shipment extends StatelessWidget {
   static MaterialPage route(BuildContext context, GoRouterState state) {
     final cubitContext = state.extra! as DashboardCubit;
 
+    print("Has Cubit: ${cubitContext}");
+
     return MaterialPage(
       key: state.pageKey,
-      child: Calculate(cubitContext: cubitContext),
+      child: Shipment(cubitContext: cubitContext),
     );
   }
 
@@ -24,6 +29,9 @@ class Shipment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const _ShipmentView();
+    return BlocProvider.value(
+      value: cubitContext,
+      child: const _ShipmentView(),
+    );
   }
 }

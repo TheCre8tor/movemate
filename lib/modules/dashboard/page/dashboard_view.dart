@@ -54,7 +54,7 @@ class AppBottomBar extends StatelessWidget {
             HomeButton(
               selectedTab: selectedTab,
               tab: HomeTab.shipment,
-              pageName: "/",
+              pageName: Shipment.name,
               currentIndex: 2,
               icon: selectedTab == HomeTab.shipment
                   ? AppIcons.timer(isFilled: true)
@@ -101,7 +101,6 @@ class HomeButton extends StatelessWidget {
         if (tab == HomeTab.home && context.canPop()) {
           context.pop();
         }
-
         if (tab == HomeTab.home ||
             selectedTab == HomeTab.dashboard ||
             tab == selectedTab) return;
@@ -110,10 +109,7 @@ class HomeButton extends StatelessWidget {
       },
       child: Column(
         children: [
-          Container(
-            child: icon,
-            height: 19,
-          ),
+          icon,
           const SizedBox(height: 6),
           Text(
             tab.name.replaceFirst(tab.name[0], tab.name[0].toUpperCase()),

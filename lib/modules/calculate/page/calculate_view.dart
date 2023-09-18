@@ -14,7 +14,12 @@ class _CalculateView extends StatelessWidget {
                 IconButton(
                   onPressed: () {
                     context.read<DashboardCubit>().setTab(HomeTab.home);
-                    context.pop();
+                    if (context.canPop()) {
+                      context.pop();
+                      if (context.canPop()) {
+                        context.pop();
+                      }
+                    }
                   },
                   icon: const Icon(
                     Icons.arrow_back_ios_new,
